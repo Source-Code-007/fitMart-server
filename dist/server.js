@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const app_1 = __importDefault(require("./app"));
-let server = app_1.default.listen(process.env.PORT, () => __awaiter(void 0, void 0, void 0, function* () {
+const server = app_1.default.listen(process.env.PORT, () => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield mongoose_1.default.connect(process.env.MONGO_URI);
         console.log(`😀 Database connected at port ${process.env.PORT}`);
@@ -24,8 +24,8 @@ let server = app_1.default.listen(process.env.PORT, () => __awaiter(void 0, void
     }
 }));
 // stop server when async errors
-process.on("unhandledRejection", () => {
-    console.log("😡 UNHANDLED REJECTION! Shutting down...");
+process.on('unhandledRejection', () => {
+    console.log('😡 UNHANDLED REJECTION! Shutting down...');
     if (server) {
         server.close(() => {
             process.exit(1);
@@ -33,7 +33,7 @@ process.on("unhandledRejection", () => {
     }
 });
 // stop server when sync errors
-process.on("uncaughtException", () => {
-    console.log("😡 UNCAUGHT EXCEPTION! Shutting down...");
+process.on('uncaughtException', () => {
+    console.log('😡 UNCAUGHT EXCEPTION! Shutting down...');
     process.exit(1);
 });
