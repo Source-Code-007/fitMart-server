@@ -12,7 +12,7 @@ const insertProduct = async (product: TProduct) => {
 const getAllProduct = async (query: Record<string, unknown>) => {
   const productQuery = new QueryBuilder(Product.find(), query)
     .searchQuery(productSearchableFields)
-    .filterQuery()
+    .filterQuery(['category'])
     .paginateQuery()
     .sortQuery()
     .fieldFilteringQuery()
@@ -44,4 +44,10 @@ const deleteProductById = async (id: string) => {
   return product
 }
 
-export const productService = { insertProduct, getAllProduct, getProductById, updateProductById, deleteProductById }
+export const productService = {
+  insertProduct,
+  getAllProduct,
+  getProductById,
+  updateProductById,
+  deleteProductById,
+}
