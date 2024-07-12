@@ -14,11 +14,12 @@ const insertProduct = catchAsync(async (req, res) => {
 })
 
 const getAllProduct = catchAsync(async (req, res) => {
-  const products = await productService.getAllProduct(req.query)
+  const {products, meta} = await productService.getAllProduct(req.query)
   sendResponse(res, StatusCodes.OK, {
     success: true,
     message: 'Products are retrieved successfully!',
     data: products,
+    meta
   })
 })
 

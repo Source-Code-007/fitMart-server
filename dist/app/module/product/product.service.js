@@ -23,7 +23,7 @@ const insertProduct = (product) => __awaiter(void 0, void 0, void 0, function* (
 const getAllProduct = (query) => __awaiter(void 0, void 0, void 0, function* () {
     const productQuery = new QueryBuilder_1.default(product_model_1.default.find(), query)
         .searchQuery(product_constant_1.productSearchableFields)
-        .filterQuery()
+        .filterQuery(['category'])
         .paginateQuery()
         .sortQuery()
         .fieldFilteringQuery()
@@ -32,19 +32,36 @@ const getAllProduct = (query) => __awaiter(void 0, void 0, void 0, function* () 
             path: 'category',
         },
     ]);
-    const result = yield productQuery.queryModel;
-    return result;
+    const products = yield productQuery.queryModel;
+    const total = yield product_model_1.default.countDocuments(productQuery.queryModel.getFilter());
+    const { page, limit } = query;
+    return {
+        products,
+        meta: {
+            page: page ? Number(page) : 1,
+            limit: limit ? Number(limit) : 10,
+            total,
+        },
+    };
 });
 const updateProductById = (id, product) => __awaiter(void 0, void 0, void 0, function* () {
-    const res = yield product_model_1.default.findByIdAndUpdate(id, product, { new: true });
+    const res = yield product_model_1.default.findByIdAndUpdate(id, product, {
+        new: true,
+    });
     return res;
 });
 const getProductById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const product = yield product_model_1.default.findById(id);
+    const product = yield product_model_1.default.findById(id).populate('category');
     return product;
 });
 const deleteProductById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const product = yield product_model_1.default.findByIdAndDelete(id);
     return product;
 });
-exports.productService = { insertProduct, getAllProduct, getProductById, updateProductById, deleteProductById };
+exports.productService = {
+    insertProduct,
+    getAllProduct,
+    getProductById,
+    updateProductById,
+    deleteProductById,
+};

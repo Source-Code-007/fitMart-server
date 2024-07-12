@@ -11,7 +11,7 @@ const insertProductZodSchema = zod_1.z.object({
     description: zod_1.z
         .string({ required_error: 'Description is required' })
         .min(10, 'Description must be 10 characters long')
-        .max(250, 'Description cannot be more than 250 characters long'),
+        .max(450, 'Description cannot be more than 450 characters long'),
     category: zod_1.z.string(),
     stock: zod_1.z.number().positive(),
 });
@@ -25,7 +25,7 @@ const updateProductZodSchema = zod_1.z.object({
     description: zod_1.z
         .string({ required_error: 'Description is required' })
         .min(10, 'Description must be 10 characters long')
-        .max(250, 'Description cannot be more than 250 characters long')
+        .max(450, 'Description cannot be more than 450 characters long')
         .optional(),
     category: zod_1.z.string().optional(),
     stock: zod_1.z.number().optional(),

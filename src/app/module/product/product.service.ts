@@ -22,19 +22,33 @@ const getAllProduct = async (query: Record<string, unknown>) => {
       },
     ])
 
-  const result = await productQuery.queryModel
+  const products = await productQuery.queryModel
 
-  return result
+  const total = await Product.countDocuments(
+    productQuery.queryModel.getFilter(),
+  )
+  const { page, limit } = query
+
+  return {
+    products,
+    meta: {
+      page: page ? Number(page) : 1,
+      limit: limit ? Number(limit) : 10,
+      total,
+    },
+  }
 }
 
 const updateProductById = async (id: string, product: Partial<TProduct>) => {
-  const res = await Product.findByIdAndUpdate(id, product, { new: true })
+  const res = await Product.findByIdAndUpdate(id, product, {
+    new: true,
+  })
 
   return res
 }
 
 const getProductById = async (id: string) => {
-  const product = await Product.findById(id)
+  const product = await Product.findById(id).populate('category')
 
   return product
 }

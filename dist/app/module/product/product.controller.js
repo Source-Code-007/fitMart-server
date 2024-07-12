@@ -27,11 +27,12 @@ const insertProduct = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, 
     });
 }));
 const getAllProduct = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const products = yield product_service_1.productService.getAllProduct(req.query);
+    const { products, meta } = yield product_service_1.productService.getAllProduct(req.query);
     (0, sendResponse_1.default)(res, http_status_codes_1.StatusCodes.OK, {
         success: true,
         message: 'Products are retrieved successfully!',
         data: products,
+        meta
     });
 }));
 const getProductById = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {

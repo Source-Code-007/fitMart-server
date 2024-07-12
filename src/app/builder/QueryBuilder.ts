@@ -41,7 +41,6 @@ class QueryBuilder<T> {
       })
     }
 
-
     this.queryModel = this.queryModel.find(queryObj as FilterQuery<T>)
 
     return this

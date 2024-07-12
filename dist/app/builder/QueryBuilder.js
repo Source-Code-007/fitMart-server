@@ -19,10 +19,19 @@ class QueryBuilder {
         return this;
     }
     //   Filter method
-    filterQuery() {
+    filterQuery(findAllFields) {
         const queryObj = Object.assign({}, this.query);
         const excludedFields = ['searchTerm', 'page', 'sort', 'limit', 'fields'];
         excludedFields.forEach((el) => delete queryObj[el]);
+        // Loop through findAllFields and convert arrays to MongoDB $in queries
+        if (findAllFields) {
+            findAllFields.forEach((field) => {
+                const fieldValue = queryObj[field];
+                if (typeof fieldValue === 'string' && fieldValue.includes(',')) {
+                    queryObj[field] = { $in: fieldValue.split(',') };
+                }
+            });
+        }
         this.queryModel = this.queryModel.find(queryObj);
         return this;
     }
