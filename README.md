@@ -30,7 +30,7 @@ FIT MART is an e-commerce platform designed to simplify the purchase and managem
 
 ### Installation Steps
 
-1. git clone https://github.com/yourusername/fitmart-server.git
+1. git clone [https://github.com/Source-Code-007/fitMart-server.git](https://github.com/Source-Code-007/fitMart-server.git)
 2. cd fitmart-server
 3. yarn install
 
@@ -45,4 +45,4 @@ FIT MART is an e-commerce platform designed to simplify the purchase and managem
     NODE_ENV=production|development
    ```
 
-## Live URL- https://fitmart-server.onrender.com/api/v1
+## Live base URL- [https://fitmart-server.onrender.com/api/v1](https://fitmart-server.onrender.com/api/v1)
