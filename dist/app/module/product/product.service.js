@@ -32,9 +32,11 @@ const getAllProduct = (query) => __awaiter(void 0, void 0, void 0, function* () 
             path: 'category',
         },
     ]);
+    console.log('before await in service product from controller');
     const products = yield productQuery.queryModel;
     const total = yield product_model_1.default.countDocuments(productQuery.queryModel.getFilter());
     const { page, limit } = query;
+    console.log('After await in service product from controller');
     return {
         products,
         meta: {

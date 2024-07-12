@@ -20,6 +20,7 @@ const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const appError_1 = __importDefault(require("../../errors/appError"));
 const insertProduct = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const product = yield product_service_1.productService.insertProduct(req.body);
+    console.log(product, 'product from controller');
     (0, sendResponse_1.default)(res, http_status_codes_1.StatusCodes.OK, {
         success: true,
         message: 'Product inserted successfully!',

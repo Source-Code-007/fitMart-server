@@ -30,12 +30,12 @@ const getAllProduct = async (query: Record<string, unknown>) => {
   const { page, limit } = query
 
   return {
-    products,
     meta: {
       page: page ? Number(page) : 1,
       limit: limit ? Number(limit) : 10,
       total,
     },
+    products,
   }
 }
 

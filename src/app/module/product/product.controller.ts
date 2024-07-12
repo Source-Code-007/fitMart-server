@@ -6,6 +6,7 @@ import AppError from '../../errors/appError'
 
 const insertProduct = catchAsync(async (req, res) => {
   const product = await productService.insertProduct(req.body)
+
   sendResponse(res, StatusCodes.OK, {
     success: true,
     message: 'Product inserted successfully!',
@@ -14,12 +15,12 @@ const insertProduct = catchAsync(async (req, res) => {
 })
 
 const getAllProduct = catchAsync(async (req, res) => {
-  const {products, meta} = await productService.getAllProduct(req.query)
+  const { products, meta } = await productService.getAllProduct(req.query)
   sendResponse(res, StatusCodes.OK, {
     success: true,
     message: 'Products are retrieved successfully!',
+    meta,
     data: products,
-    meta
   })
 })
 
