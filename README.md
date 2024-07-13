@@ -21,9 +21,10 @@ FIT MART is an e-commerce platform designed to simplify the purchase and managem
 - Node.js, Express.js
 - Database: MongoDB (Mongoose)
 
+
 ## Installation Guideline
 
-# Prerequisite
+### Prerequisite
 
 - Node.js (v14.x or later)
 - MongoDB (local or cloud-based)
@@ -39,6 +40,7 @@ FIT MART is an e-commerce platform designed to simplify the purchase and managem
 1. Create a `.env` file in the root directory of the project.
 2. Add necessary configuration variables in the `.env` file.
    Example:
+   
    ```bash
     PORT=3000
     DB_URL=your_db_connection_uri
