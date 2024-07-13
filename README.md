@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Brief introduction or tagline about the project.
+Your one-stop eCommerce store for premium fitness products, offering everything you need to achieve your health and wellness goals. Stay fit with Fit Mart!
 
 ## Project Description
 

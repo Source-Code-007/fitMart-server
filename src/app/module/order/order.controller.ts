@@ -2,7 +2,7 @@ import { StatusCodes } from 'http-status-codes'
 import catchAsync from '../../utils/catchAsync'
 import sendResponse from '../../utils/sendResponse'
 import AppError from '../../errors/appError'
-import { orderService } from './category.service'
+import { orderService } from './order.service'
 
 const insertOrder = catchAsync(async (req, res) => {
   const order = await orderService.insertOrder(req.body)
@@ -14,11 +14,12 @@ const insertOrder = catchAsync(async (req, res) => {
 })
 
 const getAllOrder = catchAsync(async (req, res) => {
-  const orders = await orderService.getAllOrder(req.query)
+  const {orders, meta} = await orderService.getAllOrder(req.query)
   sendResponse(res, StatusCodes.OK, {
     success: true,
     message: 'Orders are retrieved successfully!',
     data: orders,
+    meta
   })
 })
 

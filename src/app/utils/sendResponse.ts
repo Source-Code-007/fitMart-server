@@ -20,7 +20,7 @@ const sendResponse = (
     success: format?.success,
     message: format?.message,
     data: format?.data || null,
-    meta: format?.meta || null,
+    ...(format?.meta ? { meta: format?.meta } : {}),
   })
 }
 
